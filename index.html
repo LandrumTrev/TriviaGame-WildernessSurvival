@@ -7,25 +7,81 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Wilderness Survival : Timed Quiz</title>
     <link rel="stylesheet" href="assets/css/styles.css">
-    <!-- <link rel="stylesheet" href="assets/css/normalize.css"> -->
+    <link rel="stylesheet" href="assets/css/normalize.css">
     <style>
         html {
             background:
                 linear-gradient(217deg, rgba(183, 197, 208, .8), rgba(183, 197, 208, 0) 70.71%),
                 linear-gradient(127deg, rgba(220, 235, 193, .8), rgba(220, 235, 193, 0) 70.71%),
-                /* linear-gradient(336deg, rgba(208, 198, 183, .8), rgba(208, 198, 183, 0) 70.71%), */
+                linear-gradient(336deg, rgba(208, 198, 183, .8), rgba(208, 198, 183, 0) 70.71%),
                 url(assets/images/wildback-01.jpg) no-repeat center center fixed;
             background-size: cover;
         }
-
         
+        body {
+            /* margin: 0px; */
+        }
+
+        #head_container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 75, 79, .1);
+            /* height: 50px; */
+        }
+
+        #head_content {
+            height: 50px;
+            background-color: rgba(244, 126, 48, .1);
+            max-width: 980px;
+            margin: 0px auto;
+        }
+
+        #content {
+            margin: 0 auto;
+            width: 980px;
+            height: 100vh;
+            background-color: rgba(248, 206, 61, .1);
+        }
+
+        #foot_container {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(244, 126, 48, .1);
+            height: 50px;
+        }
+
+        #foot_content {
+            height: 50px;
+            background-color: rgba(244, 126, 48, .1);
+            /* border: 1px solid black; */
+            max-width: 980px;
+            margin: 0px auto;
+        }
+
+
     </style>
 
 </head>
 
 <body>
 
+    <div id="head_container">
+        <div id="head_content">
 
+        </div>
+    </div>
+
+    <div id="content">
+
+    </div>
+
+    <div id="foot_container">
+        <div id="foot_content">
+
+        </div>
+    </div>
 
     <script src="assets/javascript/scripts.js"></script>
     <script>
