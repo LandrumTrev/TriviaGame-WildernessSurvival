@@ -5,7 +5,7 @@
                 linear-gradient(217deg, rgba(183, 197, 208, .8), rgba(183, 197, 208, 0) 70.71%),
                 linear-gradient(127deg, rgba(220, 235, 193, .8), rgba(220, 235, 193, 0) 70.71%),
                 linear-gradient(336deg, rgba(208, 198, 183, .8), rgba(208, 198, 183, 0) 70.71%),
-                url(assets/images/wildback-01.jpg) no-repeat center center fixed;
+                url(../images/wildback-01.jpg) no-repeat center center fixed;
             background-size: cover;
         }
 
