@@ -72,14 +72,42 @@ $(document).ready(function () {
     let qF = questionArray[qObject].F;
     let right = "RIGHT!";
     let wrong = "WRONG!";
+    let timesup = "TIME'S UP!";
 
+    // declare the intervalId variable (will take a callback function and time length as setInterval)
+    let intervalId;
+
+    // declare a global variable for time
+    let time = 60;
 
 
     function displayQuestion() {
 
-        // show the current question
-        $('#question').html(qQuestion);
+        // update the values of all the answers from the new question object
+        qA = questionArray[qObject].A;
+        qB = questionArray[qObject].B;
+        qC = questionArray[qObject].C;
+        qD = questionArray[qObject].D;
+        qE = questionArray[qObject].E;
+        qF = questionArray[qObject].F;
+        qAnswer = questionArray[qObject].answer;
+        qCorrect = questionArray[qObject].correct;
+        qQuestion = questionArray[qObject].question;
+
+        // reset time to 60 seconds
+        time = 60;
+        // start the countdown
+        countdown();
+
+        // clear out the previous questions buttons
+        $('#response').html("<div>");
+        // overwrite the #question DIV with new question using .html
+        $('#question').html("<strong>" + qQuestion + "</strong>");
+
+        // create a Bootstrap List Group with styling to hold answer buttons
         $('#response').attr("class", "list-group list-group-flush col-sm-12 col-lg-6");
+
+        // create a button for every answer that exists
         if (qA) {
             $('#response').append('<button id="A" type="button" class="list-group-item list-group-item-action">' + qA + '</button>');
         };
@@ -95,12 +123,15 @@ $(document).ready(function () {
         if (qE) {
             $('#response').append('<button id="E" type="button" class="list-group-item list-group-item-action">' + qE + '</button>');
         };
+        if (qF) {
+            $('#response').append('<button id="E" type="button" class="list-group-item list-group-item-action">' + qF + '</button>');
+        };
 
+        // ...and when a user selects an answer by clicking any BUTTON...
         $('button').click(function (btn) {
 
-            // console.log("It works!"); 
-
             if ($(this).attr('id') === qCorrect) {
+                // if they pick the right answer...
 
                 $('#question').html("<strong>" + right + "</strong>");
                 $('#question').append("<p>" + qAnswer + "</p>");
@@ -112,6 +143,7 @@ $(document).ready(function () {
                 setTimeout(displayQuestion, 1000 * 10);
 
             } else {
+                // or if they pick the wrong answer...
 
                 $('#question').html("<strong>" + wrong + "</strong>");
                 $('#question').append("<p>" + qAnswer + "</p>");
@@ -122,23 +154,17 @@ $(document).ready(function () {
                 clearInterval(intervalId);
                 setTimeout(displayQuestion, 1000 * 10);
 
-            }
-
+            };
         });
 
     }
 
 
-      
-
-    // declare the intervalId variable (will take a callback function and time length as setInterval)
-    let intervalId;
-
 
     function countdown() {
 
-        // set the number of seconds the countdown will start at
-        let time = 60;
+        // set time to 60 seconds
+        time = 60;
 
         // write the initial starting number to the page (match to seconds set in the TIME variable above)
         $("#timer").text("00:60");
@@ -168,21 +194,21 @@ $(document).ready(function () {
 
             // each time COUNT is called by START(), every 1 second, decrement the value of time by 1 (second)
             time--;
+            // console.log(time);
             // a variable to stand for the value of TIME, converted into clock time by the timeConverter() function above
             let converted = timeConverter(time);
             // write the new clock time (new second) converted by timeConverter() to the TIMER page DIV
             $("#timer").text(converted);
             // when the value of time reaches 0, then...
             if (time === 0) {
-                // stop intervalId (defined in START) by passing it into clearInterval() method as an argument
+                // if time runs out without user clicking a button
+                $('#question').html("<strong>" + timesup + "</strong>");
+                $('#question').append("<p>" + qAnswer + "</p>");
+                $('button').prop("disabled", true);
+                unAnswers = unAnswers + 1;
+                qObject = qObject + 1;
                 clearInterval(intervalId);
-                // hide the Quiz questions DIV, and...
-                // $('#quiz_box').attr('style', 'display:none;');
-                // show the Results page DIV
-                // $('#results_box').attr('style', 'display:block;');
-                // and run the displayResults function
-                displayResults();
-                // console.log("Time is up!");
+                setTimeout(displayQuestion, 1000 * 10);
             }
         }
 
@@ -202,8 +228,6 @@ $(document).ready(function () {
         // hide the Start Button DIV
         $('#btn_area').attr('style', 'display:none;');
 
-        // start the countdown() function
-        countdown();
         displayQuestion();
 
     });
