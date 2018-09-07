@@ -6,232 +6,263 @@
 
 
 
-$(document).ready(function () {
+// $(document).ready(function () {
 
 
-    let questionArray = [
+let questionArray = [
 
-        {
-            question: "Halfway into a weeklong hike in Glacier National Park, you and your buddy have lost the trail. What's your next move?",
-            answer: "B. Retrace your steps to your last known landmark. You have company, supplies, and gear—so solve this yourself. If you're still off the trail after a day or two, try C. Following option A is a major reason hikers get lost.",
-            correct: "B",
-            A: "A. Shortcut cross-country back toward the path, to avoid wasting daylight.",
-            B: "B. Retrace your steps to your last known landmark.",
-            C: "C. Stop, pitch your tent, and start signaling for help.",
-            D: "D. Climb to the top of the highest nearby peak to get a better view.",
-        },
-
-
-        {
-            question: "It's day 8 of your thru-hike of southern Utah's 812-mile Hayduke Trail, your water bottles are empty, and the map doesn't show any springs on this high plateau. Now what?",
-            answer: "B. While urine can be 95 percent water and only 5 percent waste, concentrated urine can increase thirst, mess up your electrolytes, and induce vomiting. C is a myth.",
-            correct: "B",
-            A: "A. Drink any urine you produce.",
-            B: "B. Rest in the shade, then retrace your steps to the last available water once the sun goes down.",
-            C: "C. Find a creekbed and start digging. You'll find the water table soon.",
-            D: "D. Follow a cattle trail; it will always lead to water.",
-        },
+    {
+        question: "Halfway into a weeklong hike in Glacier National Park, you and your buddy have lost the trail. What's your next move?",
+        answer: "B. Retrace your steps to your last known landmark. You have company, supplies, and gear—so solve this yourself. If you're still off the trail after a day or two, try C. Following option A is a major reason hikers get lost.",
+        correct: "B",
+        A: "A. Shortcut cross-country back toward the path, to avoid wasting daylight.",
+        B: "B. Retrace your steps to your last known landmark.",
+        C: "C. Stop, pitch your tent, and start signaling for help.",
+        D: "D. Climb to the top of the highest nearby peak to get a better view.",
+    },
 
 
-        {
-            question: "You're ready for the first rappel into a technical slot canyon, but the anchors mentioned in the route description aren't there. Is this a problem?",
-            answer: "C. Flash floods may have stripped anchors you need, or you might be in the wrong canyon. Either way, a slot canyon is usually a one-way trip, so make sure you can get through before proceeding.",
-            correct: "C",
-            A: "A. No. Rap on using something else as an anchor, but make sure your cell phone is charged in case anything goes wrong.",
-            B: "B. Not really. But first, check your bolt kit to be certain you have enough anchors to pound in wherever you might need them, and find a good spot to establish the start of your own route.",
-            C: "C. Yes. Retrace your route until you find the anchors.",
-        },
+    {
+        question: "It's day 8 of your thru-hike of southern Utah's 812-mile Hayduke Trail, your water bottles are empty, and the map doesn't show any springs on this high plateau. Now what?",
+        answer: "B. While urine can be 95 percent water and only 5 percent waste, concentrated urine can increase thirst, mess up your electrolytes, and induce vomiting. C is a myth.",
+        correct: "B",
+        A: "A. Drink any urine you produce.",
+        B: "B. Rest in the shade, then retrace your steps to the last available water once the sun goes down.",
+        C: "C. Find a creekbed and start digging. You'll find the water table soon.",
+        D: "D. Follow a cattle trail; it will always lead to water.",
+    },
 
 
-        {
-            question: "True or false? Hypothermia can be a risk in temps above 55°F.",
-            answer: "A. True, especially if it's raining and windy. Just ask the rangers in the Smokies, who see a surprising number of cases every spring.",
-            correct: "A",
-            A: "True",
-            B: "False",
-        },
+    {
+        question: "You're ready for the first rappel into a technical slot canyon, but the anchors mentioned in the route description aren't there. Is this a problem?",
+        answer: "C. Flash floods may have stripped anchors you need, or you might be in the wrong canyon. Either way, a slot canyon is usually a one-way trip, so make sure you can get through before proceeding.",
+        correct: "C",
+        A: "A. No. Rap on using something else as an anchor, but make sure your cell phone is charged in case anything goes wrong.",
+        B: "B. Not really. But first, check your bolt kit to be certain you have enough anchors to pound in wherever you might need them, and find a good spot to establish the start of your own route.",
+        C: "C. Yes. Retrace your route until you find the anchors.",
+    },
 
 
-    ];
+    {
+        question: "True or false? Hypothermia can be a risk in temps above 55°F.",
+        answer: "A. True, especially if it's raining and windy. Just ask the rangers in the Smokies, who see a surprising number of cases every spring.",
+        correct: "A",
+        A: "True",
+        B: "False",
+    },
+
+    {
+        question: "end"
+    }
+
+];
 
 
-    let rightAnswers = 0;
-    let wrongAnswers = 0;
-    let unAnswers = 0;
+let rightAnswers = 0;
+let wrongAnswers = 0;
+let unAnswers = 0;
 
-    let qObject = 0;
+let qObject = 0;
 
-    let qQuestion = questionArray[qObject].question;
-    let qAnswer = questionArray[qObject].answer;
-    let qCorrect = questionArray[qObject].correct;
-    let qA = questionArray[qObject].A;
-    let qB = questionArray[qObject].B;
-    let qC = questionArray[qObject].C;
-    let qD = questionArray[qObject].D;
-    let qE = questionArray[qObject].E;
-    let qF = questionArray[qObject].F;
-    let right = "RIGHT!";
-    let wrong = "WRONG!";
-    let timesup = "TIME'S UP!";
+let qQuestion = questionArray[qObject].question;
+let qAnswer = questionArray[qObject].answer;
+let qCorrect = questionArray[qObject].correct;
+let qA = questionArray[qObject].A;
+let qB = questionArray[qObject].B;
+let qC = questionArray[qObject].C;
+let qD = questionArray[qObject].D;
+let qE = questionArray[qObject].E;
+let qF = questionArray[qObject].F;
+let right = "RIGHT!";
+let wrong = "WRONG!";
+let timesup = "TIME'S UP!";
+let done = "FINISHED!";
 
-    // declare the intervalId variable (will take a callback function and time length as setInterval)
-    let intervalId;
+// declare the intervalId variable (will take a callback function and time length as setInterval)
+let intervalId;
 
-    // declare a global variable for time
-    let time = 60;
+// declare a global variable for time
+let time = 60;
 
 
-    function displayQuestion() {
 
-        // update the values of all the answers from the new question object
-        qA = questionArray[qObject].A;
-        qB = questionArray[qObject].B;
-        qC = questionArray[qObject].C;
-        qD = questionArray[qObject].D;
-        qE = questionArray[qObject].E;
-        qF = questionArray[qObject].F;
-        qAnswer = questionArray[qObject].answer;
-        qCorrect = questionArray[qObject].correct;
-        qQuestion = questionArray[qObject].question;
 
-        // reset time to 60 seconds
-        time = 60;
-        // start the countdown
-        countdown();
+
+function displayQuestion() {
+
+
+    // update the values of all the answers from the new question object
+    qQuestion = questionArray[qObject].question;
+    qAnswer = questionArray[qObject].answer;
+    qCorrect = questionArray[qObject].correct;
+    qA = questionArray[qObject].A;
+    qB = questionArray[qObject].B;
+    qC = questionArray[qObject].C;
+    qD = questionArray[qObject].D;
+    qE = questionArray[qObject].E;
+    qF = questionArray[qObject].F;
+
+
+    // a hack, but couldn't find way to test for no more elements in Array
+    // if the value of the Array Objects .question is "end", then show results
+    if (qQuestion === "end") {
 
         // clear out the previous questions buttons
         $('#response').html("<div>");
-        // overwrite the #question DIV with new question using .html
-        $('#question').html("<strong>" + qQuestion + "</strong>");
-
-        // create a Bootstrap List Group with styling to hold answer buttons
+        $('#question').html("<strong>" + done + "</strong>");
+        $('#question').append("<p>Your results:</p>");
+        // create a Bootstrap List Group with styling to hold results buttons
         $('#response').attr("class", "list-group list-group-flush col-sm-12 col-lg-6");
+        $('#response').append('<button id="right" type="button" class="list-group-item list-group-item-action">Correct: <span>' + rightAnswers + '</button>');
+        $('#response').append('<button id="wrong" type="button" class="list-group-item list-group-item-action">Incorrect: <span>' + wrongAnswers + '</button>');
+        $('#response').append('<button id="noanswer" type="button" class="list-group-item list-group-item-action">Unanswered: <span>' + unAnswers + '</button>');
 
-        // create a button for every answer that exists
-        if (qA) {
-            $('#response').append('<button id="A" type="button" class="list-group-item list-group-item-action">' + qA + '</button>');
-        };
-        if (qB) {
-            $('#response').append('<button id="B" type="button" class="list-group-item list-group-item-action">' + qB + '</button>');
-        };
-        if (qC) {
-            $('#response').append('<button id="C" type="button" class="list-group-item list-group-item-action">' + qC + '</button>');
-        };
-        if (qD) {
-            $('#response').append('<button id="D" type="button" class="list-group-item list-group-item-action">' + qD + '</button>');
-        };
-        if (qE) {
-            $('#response').append('<button id="E" type="button" class="list-group-item list-group-item-action">' + qE + '</button>');
-        };
-        if (qF) {
-            $('#response').append('<button id="E" type="button" class="list-group-item list-group-item-action">' + qF + '</button>');
-        };
 
-        // ...and when a user selects an answer by clicking any BUTTON...
-        $('button').click(function (btn) {
-
-            if ($(this).attr('id') === qCorrect) {
-                // if they pick the right answer...
-
-                $('#question').html("<strong>" + right + "</strong>");
-                $('#question').append("<p>" + qAnswer + "</p>");
-                $(this).attr('class', 'list-group-item list-group-item-action list-group-item-success');
-                $('button').prop("disabled", true);
-                rightAnswers = rightAnswers + 1;
-                qObject = qObject + 1;
-                clearInterval(intervalId);
-                setTimeout(displayQuestion, 1000 * 10);
-
-            } else {
-                // or if they pick the wrong answer...
-
-                $('#question').html("<strong>" + wrong + "</strong>");
-                $('#question').append("<p>" + qAnswer + "</p>");
-                $(this).attr('class', 'list-group-item list-group-item-action list-group-item-danger');
-                $('button').prop("disabled", true);
-                wrongAnswers = wrongAnswers + 1;
-                qObject = qObject + 1;
-                clearInterval(intervalId);
-                setTimeout(displayQuestion, 1000 * 10);
-
-            };
-        });
+        console.log("all done!");
+        return;
 
     }
 
+    // reset time to 60 seconds
+    time = 60;
+    // start the countdown
+    countdown();
 
+    // clear out the previous questions buttons
+    $('#response').html("<div>");
+    // overwrite the #question DIV with new question using .html
+    $('#question').html("<strong>" + qQuestion + "</strong>");
 
-    function countdown() {
+    // create a Bootstrap List Group with styling to hold answer buttons
+    $('#response').attr("class", "list-group list-group-flush col-sm-12 col-lg-6");
 
-        // set time to 60 seconds
-        time = 60;
+    // create a button for every answer that exists
+    if (qA) {
+        $('#response').append('<button id="A" type="button" class="list-group-item list-group-item-action">' + qA + '</button>');
+    };
+    if (qB) {
+        $('#response').append('<button id="B" type="button" class="list-group-item list-group-item-action">' + qB + '</button>');
+    };
+    if (qC) {
+        $('#response').append('<button id="C" type="button" class="list-group-item list-group-item-action">' + qC + '</button>');
+    };
+    if (qD) {
+        $('#response').append('<button id="D" type="button" class="list-group-item list-group-item-action">' + qD + '</button>');
+    };
+    if (qE) {
+        $('#response').append('<button id="E" type="button" class="list-group-item list-group-item-action">' + qE + '</button>');
+    };
+    if (qF) {
+        $('#response').append('<button id="E" type="button" class="list-group-item list-group-item-action">' + qF + '</button>');
+    };
 
-        // write the initial starting number to the page (match to seconds set in the TIME variable above)
-        $("#timer").text("00:60");
+    // ...and when a user selects an answer by clicking any BUTTON...
+    $('button').click(function (btn) {
 
-        // timeConverter function copied from the stopwatchSolution.js class activity... thank you! :-)
-        function timeConverter(t) {
+        if ($(this).attr('id') === qCorrect) {
+            // if they pick the right answer...
 
-            var minutes = Math.floor(t / 60);
-            var seconds = t - (minutes * 60);
+            $('#question').html("<strong>" + right + "</strong>");
+            $('#question').append("<p>" + qAnswer + "</p>");
+            $(this).attr('class', 'list-group-item list-group-item-action list-group-item-success');
+            $('button').prop("disabled", true);
+            rightAnswers = rightAnswers + 1;
+            qObject = qObject + 1;
+            clearInterval(intervalId);
+            setTimeout(displayQuestion, 1000 * 10);
 
-            if (seconds < 10) {
-                seconds = "0" + seconds;
-            }
+        } else {
+            // or if they pick the wrong answer...
 
-            if (minutes === 0) {
-                minutes = "00";
-            } else if (minutes < 10) {
-                minutes = "0" + minutes;
-            }
+            $('#question').html("<strong>" + wrong + "</strong>");
+            $('#question').append("<p>" + qAnswer + "</p>");
+            $(this).attr('class', 'list-group-item list-group-item-action list-group-item-danger');
+            $('button').prop("disabled", true);
+            wrongAnswers = wrongAnswers + 1;
+            qObject = qObject + 1;
+            clearInterval(intervalId);
+            setTimeout(displayQuestion, 1000 * 10);
 
-            return minutes + ":" + seconds;
-        }
-
-        // the Callback function called in START's setInterval() method
-        // this function's actions run once every second, as defined by setInterval(count, 1000), below
-        function count() {
-
-            // each time COUNT is called by START(), every 1 second, decrement the value of time by 1 (second)
-            time--;
-            // console.log(time);
-            // a variable to stand for the value of TIME, converted into clock time by the timeConverter() function above
-            let converted = timeConverter(time);
-            // write the new clock time (new second) converted by timeConverter() to the TIMER page DIV
-            $("#timer").text(converted);
-            // when the value of time reaches 0, then...
-            if (time === 0) {
-                // if time runs out without user clicking a button
-                $('#question').html("<strong>" + timesup + "</strong>");
-                $('#question').append("<p>" + qAnswer + "</p>");
-                $('button').prop("disabled", true);
-                unAnswers = unAnswers + 1;
-                qObject = qObject + 1;
-                clearInterval(intervalId);
-                setTimeout(displayQuestion, 1000 * 10);
-            }
-        }
-
-        // define the START function to start the countdown (call below)
-        function start() {
-            // intervalId defined as setInterval with COUNT callback function and 1 sec interval
-            intervalId = setInterval(count, 1000);
-        }
-
-        start();
-
-    }
-
-
-    $('#btn_area').click(function () {
-
-        // hide the Start Button DIV
-        $('#btn_area').attr('style', 'display:none;');
-
-        displayQuestion();
-
+        };
     });
 
 
 
+}
+
+
+
+function countdown() {
+
+    // set time to 60 seconds
+    time = 60;
+
+    // write the initial starting number to the page (match to seconds set in the TIME variable above)
+    $("#timer").text("00:60");
+
+    // timeConverter function copied from the stopwatchSolution.js class activity... thank you! :-)
+    function timeConverter(t) {
+
+        var minutes = Math.floor(t / 60);
+        var seconds = t - (minutes * 60);
+
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+
+        if (minutes === 0) {
+            minutes = "00";
+        } else if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+
+        return minutes + ":" + seconds;
+    }
+
+    // the Callback function called in START's setInterval() method
+    // this function's actions run once every second, as defined by setInterval(count, 1000), below
+    function count() {
+
+        // each time COUNT is called by START(), every 1 second, decrement the value of time by 1 (second)
+        time--;
+        // console.log(time);
+        // a variable to stand for the value of TIME, converted into clock time by the timeConverter() function above
+        let converted = timeConverter(time);
+        // write the new clock time (new second) converted by timeConverter() to the TIMER page DIV
+        $("#timer").text(converted);
+        // when the value of time reaches 0, then...
+        if (time === 0) {
+            // if time runs out without user clicking a button
+            $('#question').html("<strong>" + timesup + "</strong>");
+            $('#question').append("<p>" + qAnswer + "</p>");
+            $('button').prop("disabled", true);
+            unAnswers = unAnswers + 1;
+            qObject = qObject + 1;
+            clearInterval(intervalId);
+            setTimeout(displayQuestion, 1000 * 10);
+        }
+    }
+
+    // define the START function to start the countdown (call below)
+    function start() {
+        // intervalId defined as setInterval with COUNT callback function and 1 sec interval
+        intervalId = setInterval(count, 1000);
+    }
+
+    start();
+
+}
+
+
+$('#btn_area').click(function () {
+
+    // hide the Start Button DIV
+    $('#btn_area').attr('style', 'display:none;');
+
+    displayQuestion();
+
 });
+
+
+
+// });
