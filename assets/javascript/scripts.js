@@ -13,7 +13,7 @@ $(document).ready(function () {
 
         {
             question: "Halfway into a weeklong hike in Glacier National Park, you and your buddy have lost the trail. What's your next move?",
-            answer: "B. You have company, supplies, and gear—so solve this yourself. If you're still off the trail after a day or two, try C. Following option A is a major reason hikers get lost.",
+            answer: "B. Retrace your steps to your last known landmark. You have company, supplies, and gear—so solve this yourself. If you're still off the trail after a day or two, try C. Following option A is a major reason hikers get lost.",
             correct: "B",
             A: "A. Shortcut cross-country back toward the path, to avoid wasting daylight.",
             B: "B. Retrace your steps to your last known landmark.",
@@ -55,19 +55,86 @@ $(document).ready(function () {
     ];
 
 
+    let rightAnswers = 0;
+    let wrongAnswers = 0;
+    let unAnswers = 0;
+
+    let qObject = 0;
+
+    let qQuestion = questionArray[qObject].question;
+    let qAnswer = questionArray[qObject].answer;
+    let qCorrect = questionArray[qObject].correct;
+    let qA = questionArray[qObject].A;
+    let qB = questionArray[qObject].B;
+    let qC = questionArray[qObject].C;
+    let qD = questionArray[qObject].D;
+    let qE = questionArray[qObject].E;
+    let qF = questionArray[qObject].F;
+    let right = "RIGHT!";
+    let wrong = "WRONG!";
+
+
+
     function displayQuestion() {
 
+        // show the current question
+        $('#question').html(qQuestion);
+        $('#response').attr("class", "list-group list-group-flush col-sm-12 col-lg-6");
+        if (qA) {
+            $('#response').append('<button id="A" type="button" class="list-group-item list-group-item-action">' + qA + '</button>');
+        };
+        if (qB) {
+            $('#response').append('<button id="B" type="button" class="list-group-item list-group-item-action">' + qB + '</button>');
+        };
+        if (qC) {
+            $('#response').append('<button id="C" type="button" class="list-group-item list-group-item-action">' + qC + '</button>');
+        };
+        if (qD) {
+            $('#response').append('<button id="D" type="button" class="list-group-item list-group-item-action">' + qD + '</button>');
+        };
+        if (qE) {
+            $('#response').append('<button id="E" type="button" class="list-group-item list-group-item-action">' + qE + '</button>');
+        };
+
+        $('button').click(function (btn) {
+
+            // console.log("It works!"); 
+
+            if ($(this).attr('id') === qCorrect) {
+
+                $('#question').html("<strong>" + right + "</strong>");
+                $('#question').append("<p>" + qAnswer + "</p>");
+                $(this).attr('class', 'list-group-item list-group-item-action list-group-item-success');
+                $('button').prop("disabled", true);
+                rightAnswers = rightAnswers + 1;
+                qObject = qObject + 1;
+                clearInterval(intervalId);
+                setTimeout(displayQuestion, 1000 * 10);
+
+            } else {
+
+                $('#question').html("<strong>" + wrong + "</strong>");
+                $('#question').append("<p>" + qAnswer + "</p>");
+                $(this).attr('class', 'list-group-item list-group-item-action list-group-item-danger');
+                $('button').prop("disabled", true);
+                wrongAnswers = wrongAnswers + 1;
+                qObject = qObject + 1;
+                clearInterval(intervalId);
+                setTimeout(displayQuestion, 1000 * 10);
+
+            }
+
+        });
 
     }
 
 
-    function displayResults() {
+      
+
+    // declare the intervalId variable (will take a callback function and time length as setInterval)
+    let intervalId;
 
 
-    }
-
-
-    
     function countdown() {
 
         // set the number of seconds the countdown will start at
@@ -115,19 +182,16 @@ $(document).ready(function () {
                 // $('#results_box').attr('style', 'display:block;');
                 // and run the displayResults function
                 displayResults();
-                console.log("Time is up!");
+                // console.log("Time is up!");
             }
         }
-
-        // declare the intervalId variable (will take a callback function and time length as setInterval)
-        let intervalId;
 
         // define the START function to start the countdown (call below)
         function start() {
             // intervalId defined as setInterval with COUNT callback function and 1 sec interval
             intervalId = setInterval(count, 1000);
         }
-        
+
         start();
 
     }
@@ -135,13 +199,12 @@ $(document).ready(function () {
 
     $('#btn_area').click(function () {
 
-        // hide the Start Page DIV, and
+        // hide the Start Button DIV
         $('#btn_area').attr('style', 'display:none;');
-        // show the Quiz questions DIV
-        // $('#quiz_box').attr('style', 'display:block;');
 
         // start the countdown() function
         countdown();
+        displayQuestion();
 
     });
 
