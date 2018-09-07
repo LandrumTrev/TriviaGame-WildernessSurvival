@@ -116,7 +116,12 @@ function displayQuestion() {
         $('#response').append('<button id="right" type="button" class="list-group-item list-group-item-action">Correct: <span>' + rightAnswers + '</button>');
         $('#response').append('<button id="wrong" type="button" class="list-group-item list-group-item-action">Incorrect: <span>' + wrongAnswers + '</button>');
         $('#response').append('<button id="noanswer" type="button" class="list-group-item list-group-item-action">Unanswered: <span>' + unAnswers + '</button>');
-
+        // show the START button again, and change it's text to RETAKE QUIZ?
+        $('#btn_area').attr("style", "display:block;");
+        $('#btn_area').html("<h1>RETAKE QUIZ?</h1>");
+        $('#btn_area').click(function () {
+            location.reload();
+        });
 
         console.log("all done!");
         return;
