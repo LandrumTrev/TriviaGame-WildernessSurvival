@@ -382,7 +382,8 @@ let intervalId;
 // declare a global variable for time
 let time = 60;
 
-
+// declare variable for question number display
+let qNumber = 1;
 
 
 
@@ -399,6 +400,7 @@ function displayQuestion() {
     qD = questionArray[qObject].D;
     qE = questionArray[qObject].E;
     qF = questionArray[qObject].F;
+    qNumber = qObject + 1;
 
 
     // a hack, but couldn't find way to test for no more elements in Array
@@ -431,6 +433,8 @@ function displayQuestion() {
     // start the countdown
     countdown();
 
+    // write the question number into the question_number SPAN
+    $('#question_number').text(qNumber);
     // clear out the previous questions buttons
     $('#response').html("<div>");
     // overwrite the #question DIV with new question using .html
@@ -472,7 +476,7 @@ function displayQuestion() {
             rightAnswers = rightAnswers + 1;
             qObject = qObject + 1;
             clearInterval(intervalId);
-            setTimeout(displayQuestion, 1000 * 3);
+            setTimeout(displayQuestion, 1000 * 10);
 
         } else {
             // or if they pick the wrong answer...
@@ -484,7 +488,7 @@ function displayQuestion() {
             wrongAnswers = wrongAnswers + 1;
             qObject = qObject + 1;
             clearInterval(intervalId);
-            setTimeout(displayQuestion, 1000 * 3);
+            setTimeout(displayQuestion, 1000 * 10);
 
         };
     });
