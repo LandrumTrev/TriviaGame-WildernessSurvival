@@ -491,7 +491,7 @@ $(document).ready(function () {
                 rightAnswers = rightAnswers + 1;
                 qObject = qObject + 1;
                 clearInterval(intervalId);
-                setTimeout(displayQuestion, 1000 * 1);
+                setTimeout(displayQuestion, 1000 * 12);
 
             } else {
                 // or if they pick the wrong answer...
@@ -503,7 +503,7 @@ $(document).ready(function () {
                 wrongAnswers = wrongAnswers + 1;
                 qObject = qObject + 1;
                 clearInterval(intervalId);
-                setTimeout(displayQuestion, 1000 * 1);
+                setTimeout(displayQuestion, 1000 * 12);
 
             };
         });

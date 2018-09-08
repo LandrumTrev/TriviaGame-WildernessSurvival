@@ -9,7 +9,8 @@
         }
 
         body {
-            /* margin: 0px; */
+            margin: 0px;
+            height: 100vh;
         }
 
         * {
@@ -20,7 +21,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(0, 75, 79, .1);
+            background-color: rgba(0, 75, 79, .3);
             /* height: 50px; */
         }
 
@@ -29,38 +30,49 @@
             /* background-color: rgba(244, 126, 48, .1); */
             max-width: 980px;
             margin: 0px auto;
-            padding: 20px;
-            /* display: table; */
+            /* padding: 20px; */
+            display: table;
         }
 
         #title {
             font-family: 'Raleway';
-            font-weight: 900;
+            font-weight: 800;
             font-size: 3rem;
             padding: 10px;
+            letter-spacing: .1rem;
         }
 
         #wilderness {
             float: left;
-            padding: 10px;
+            padding: 0px;
+            margin-left: 10px;
+            color: #eee;
+
         }
 
         #survival {
             float: left;
-            padding: 10px;
+            padding: 0px;
+            margin-top: -20px;
+            margin-left: 10px;
+            color: #eee;
+
         }
 
         #icon {
+            /* clear: both; */
+            box-sizing: content-box;
             float: right;
-            height: 60px;
-            /* padding: 10px; */
+            height: 40px;
+            padding-left: 10px;
+            margin-top: 14px;
         }
 
         #content {
-            margin: 0 auto;
+            /* margin: 0 auto; */
             /* width: 980px; */
             height: 100vh;
-            background-color: rgba(248, 206, 61, .1);
+            /* background-color: rgba(248, 206, 61, .1); */
         }
 
         #quiz_container {
@@ -69,11 +81,11 @@
             /* width: 80%; */
             /* height: 50%; */
             position: relative;
-            top: 200px;
+            top: 130px;
         }
 
         #bs_container {
-            background-color: rgba(248, 206, 61, .5);
+            background-color: rgba(248, 206, 61, 1);
         }
 
         #question {
@@ -91,7 +103,7 @@
 
         #number_div {
             padding: 0px;
-            background-color: rgba(0, 75, 79, .5);
+            background-color: rgba(0, 75, 79, 1);
             /* float: left; */
             margin: 0px;
         }
@@ -106,7 +118,7 @@
 
         #timer_div {
             padding: 0px;
-            background-color: rgba(244, 126, 48, .5);
+            background-color: rgba(244, 126, 48, 1);
             /* float: right; */
             margin: 0px;
         }
@@ -134,7 +146,7 @@
         }
 
         #foot_container {
-            position: fixed;
+            position: absolute;
             bottom: 0;
             width: 100%;
             /* background-color: rgba(244, 126, 48, .1); */
@@ -148,7 +160,7 @@
             font-size: .7rem;
             top: 15px;
             text-align: center;
-            height: 50px;
+            /* height: 50px; */
             /* background-color: rgba(244, 126, 48, .1); */
             /* border: 1px solid black; */
             max-width: 980px;
@@ -157,6 +169,8 @@
 
         a {
             color: #fff;
+            text-shadow: 1px 1px 2px black; 
+            display: block;        
         }
 
         /* Globally */
@@ -189,3 +203,152 @@
         .result_num {
             float: right;
         }
+
+        /* MEDIA QUERIES BELOW */
+/* MAX WIDTH MEDIA QUERIES BELOW */
+@media screen and (max-width: 560px) {
+
+    #wilderness {
+        /* float: left; */
+        /* padding: 10px; */
+    }
+
+    #survival {
+        float: left;
+        padding: 0px;
+        margin-top: -20px;
+        margin-left: 10px;
+    }
+
+    #icon {
+        /* float: right; */
+        /* height: 60px; */
+        /* padding: 10px; */
+    }
+
+    
+}
+
+@media screen and (max-width: 768px) {
+
+    #wilderness {
+        /* float: left; */
+        /* padding: 10px; */
+    }
+
+    #survival {
+        /* float: left; */
+        /* padding: 10px; */
+    }
+
+    #icon {
+        /* float: right; */
+        /* height: 60px; */
+        /* padding: 10px; */
+    }
+
+}
+
+@media screen and (max-width: 980px) {
+
+    #wilderness {
+        /* float: left; */
+        /* padding: 10px; */
+    }
+
+    #survival {
+        /* float: left; */
+        /* padding: 10px; */
+    }
+
+    #icon {
+        /* float: right; */
+        /* height: 60px; */
+        /* padding: 10px; */
+    }
+
+}
+
+/* MAX WIDTH MEDIA QUERIES ABOVE */
+
+
+
+
+/* MIN WIDTH MEDIA QUERIES BELOW */
+@media screen and (min-width: 559px) {
+
+    #wilderness {
+        float: left;
+        padding: 0px;
+        margin-left: 10px;
+
+    }
+
+    #survival {
+        float: left;
+        padding: 0px;
+        margin-top: 0px;
+        margin-left: 15px;
+        /* color: red; */
+    }
+
+    #icon {
+        /* clear: both; */
+        box-sizing: content-box;
+        float: right;
+        height: 40px;
+        padding-left: 10px;
+        margin-top: 14px;
+        margin-left: 15px;
+
+    }
+
+    a {
+       display: inline;        
+    }
+
+    
+}
+
+@media screen and (min-width: 768px) {
+
+    #wilderness {
+        /* float: left; */
+        /* padding: 10px; */
+    }
+
+    #survival {
+        /* float: left; */
+        /* padding: 10px; */
+    }
+
+    #icon {
+        /* float: right; */
+        /* height: 60px; */
+        /* padding: 10px; */
+    }
+
+}
+
+@media screen and (min-width: 980px) {
+
+    #wilderness {
+        /* float: left; */
+        /* padding: 10px; */
+    }
+
+    #survival {
+        /* float: left; */
+        /* padding: 10px; */
+    }
+
+    #icon {
+        /* float: right; */
+        /* height: 60px; */
+        /* padding: 10px; */
+    }
+
+}
+
+/* MIN WIDTH MEDIA QUERIES ABOVE */
+/* MEDIA QUERIES ABOVE */
