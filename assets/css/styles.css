@@ -1,12 +1,11 @@
         /* @import url('https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i'); */
-
-        body {
-            background:
+        html {
+            /* background:
                 linear-gradient(217deg, rgba(183, 197, 208, .8), rgba(183, 197, 208, 0) 70.71%),
                 linear-gradient(127deg, rgba(220, 235, 193, .8), rgba(220, 235, 193, 0) 70.71%),
                 linear-gradient(336deg, rgba(208, 198, 183, .8), rgba(208, 198, 183, 0) 70.71%),
-                url(../images/wildback-01.jpg) no-repeat center center fixed;
-            background-size: cover;
+                url(../images/wildback-01.jpg) no-repeat center center fixed; */
+            /* background-size: cover; */
         }
 
         body {
@@ -44,22 +43,18 @@
         #wilderness {
             float: left;
             padding: 10px;
-
         }
 
         #survival {
             float: left;
             padding: 10px;
-
         }
 
         #icon {
             float: right;
             height: 60px;
             /* padding: 10px; */
-
         }
-
 
         #content {
             margin: 0 auto;
@@ -79,7 +74,6 @@
 
         #bs_container {
             background-color: rgba(248, 206, 61, .5);
-
         }
 
         #question {
@@ -90,12 +84,9 @@
             padding: 0px;
         }
 
-
-
         #info_area {
             padding: 0px;
             background-color: rgba(244, 126, 48, .1);
-
         }
 
         #number_div {
@@ -118,7 +109,6 @@
             background-color: rgba(244, 126, 48, .5);
             /* float: right; */
             margin: 0px;
-
         }
 
         #timer {
@@ -127,10 +117,7 @@
             float: right;
             margin: 0px;
             color: #fff;
-
         }
-
-
 
         #btn_area {
             background-color: rgba(244, 126, 48, .9);
@@ -146,23 +133,54 @@
             color: #fff;
         }
 
-
         #foot_container {
             position: fixed;
             bottom: 0;
             width: 100%;
-            background-color: rgba(244, 126, 48, .1);
+            /* background-color: rgba(244, 126, 48, .1); */
             height: 50px;
         }
 
         #foot_content {
+            position: relative;
+            text-decoration: none;
+            color: #999;
+            font-size: .7rem;
+            top: 15px;
+            text-align: center;
             height: 50px;
-            background-color: rgba(244, 126, 48, .1);
+            /* background-color: rgba(244, 126, 48, .1); */
             /* border: 1px solid black; */
             max-width: 980px;
             margin: 0px auto;
         }
 
+        a {
+            color: #fff;
+        }
+
+        /* Globally */
+        /* Each state */
+        a:visited {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        a:focus {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        a:hover,
+        a:active {
+            text-decoration: none;
+            color: #fff;
+        }
 
         .result_cat {
             float: left;
