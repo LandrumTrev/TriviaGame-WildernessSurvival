@@ -374,7 +374,6 @@ let qF = questionArray[qObject].F;
 let right = "RIGHT!";
 let wrong = "WRONG!";
 let timesup = "TIME'S UP!";
-let done = "FINISHED!";
 
 // declare the intervalId variable (will take a callback function and time length as setInterval)
 let intervalId;
@@ -385,7 +384,8 @@ let time = 60;
 // declare variable for question number display
 let qNumber = 1;
 
-
+// variable to stand for the scoring message at the end of the game
+let scoring = "<h5>FINISHED! How did you do?</h5><h5>0 to 10 points:</h5><p>Time for a remedial backpacking course! Right now, your life insurance policy is what financial advisors call a solid investment…for your spouse.</p><h5>10 to 20 points:</h5><p>You're skating on thin ice, Ringo. Before you go hiking again, carefully study the skills in this quiz and a how-to guide such as <a href='https://www.mountaineers.org/books/books/mountaineering-the-freedom-of-the-hills-9th-edition-1?gclid=Cj0KCQjww8jcBRDZARIsAJGCSGv351fwMJEDbeVTMF4U__G80b6B4nLKs-_BIaBHSGrUWP_femnqazMaAie_EALw_wcB' target='_blank'>Mountaineering: The Freedom of the Hills ($34.95 at www.mountaineers.org).</a></p><h5>20 to 26 points:</h5><p>Welcome to the great middle ground of risk. You might get the chance to pass on your genes, but those lapses add up the more you throw the dice.</p><h5>27 to 29 points:</h5><p>Just watch your driving; you have the wilderness stuff pretty much dialed.</p><h5>30 to 33 points:</h5><p>Keep your cholesterol down, Reinhold, and you'll still be climbing those mountains when you're 99.</p>"
 
 function displayQuestion() {
 
@@ -409,13 +409,12 @@ function displayQuestion() {
 
         // clear out the previous questions buttons
         $('#response').html("<div>");
-        $('#question').html("<strong>" + done + "</strong>");
-        $('#question').append("<p>Your results:</p>");
+        $('#question').html(scoring);
         // create a Bootstrap List Group with styling to hold results buttons
         $('#response').attr("class", "list-group list-group-flush col-sm-12 col-lg-6");
-        $('#response').append('<button id="right" type="button" class="list-group-item list-group-item-action">Correct: <span>' + rightAnswers + '</button>');
-        $('#response').append('<button id="wrong" type="button" class="list-group-item list-group-item-action">Incorrect: <span>' + wrongAnswers + '</button>');
-        $('#response').append('<button id="noanswer" type="button" class="list-group-item list-group-item-action">Unanswered: <span>' + unAnswers + '</button>');
+        $('#response').append('<button id="right" type="button" class="list-group-item list-group-item-action list-group-item-success"><strong>Correct: <span>' + rightAnswers + '</strong></button>');
+        $('#response').append('<button id="wrong" type="button" class="list-group-item list-group-item-action list-group-item-danger">Incorrect: <span>' + wrongAnswers + '</button>');
+        $('#response').append('<button id="noanswer" type="button" class="list-group-item list-group-item-action list-group-item-dark">Unanswered: <span>' + unAnswers + '</button>');
         // show the START button again, and change it's text to RETAKE QUIZ?
         $('#btn_area').attr("style", "display:block;");
         $('#btn_area').html("<h1>RETAKE QUIZ?</h1>");
@@ -476,7 +475,7 @@ function displayQuestion() {
             rightAnswers = rightAnswers + 1;
             qObject = qObject + 1;
             clearInterval(intervalId);
-            setTimeout(displayQuestion, 1000 * 10);
+            setTimeout(displayQuestion, 1000 * 1);
 
         } else {
             // or if they pick the wrong answer...
@@ -488,7 +487,7 @@ function displayQuestion() {
             wrongAnswers = wrongAnswers + 1;
             qObject = qObject + 1;
             clearInterval(intervalId);
-            setTimeout(displayQuestion, 1000 * 10);
+            setTimeout(displayQuestion, 1000 * 1);
 
         };
     });
