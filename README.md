@@ -1,7 +1,7 @@
 # Wilderness Survival Quiz
 ##### Multiple-choice quiz with individually timed question slides.
 
-JavaScript, jQuery, CSS, HTML, Bootstrap, Google Fonts, GitHub. Timed quiz with countdown timer clock and timeout-triggered functionality.
+JavaScript, jQuery, CSS, HTML, Bootstrap, Google Fonts, GitHub, responsive web design (RWD). Timed quiz with countdown timer clock and timeout-triggered functionality.
 
 > Are you knowledgeable enough to successfully face the potential challenges of a seriously awesome adventure in the wilderness? Take this timed quiz and find out!
 
