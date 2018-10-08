@@ -2,7 +2,7 @@
 // advanced timed trivia game assignment
 // © Richard Trevillian, 2018-09-06
 // University of Richmond, Full Stack Web Development Bootcamp
-// JavaScript
+// JavaScript + jQuery
 
 
 
@@ -355,22 +355,28 @@ $(document).ready(function () {
 
     ];
 
-
+    // scoring variables
     let rightAnswers = 0;
     let wrongAnswers = 0;
     let unAnswers = 0;
 
+    // variable to stand for initial question number
     let qObject = 0;
 
+    // the text of the question
     let qQuestion = questionArray[qObject].question;
+    // the text explaining the correct answer
     let qAnswer = questionArray[qObject].answer;
+    // the letter of the correct anwser
     let qCorrect = questionArray[qObject].correct;
+    // variables for each multiple choice answer
     let qA = questionArray[qObject].A;
     let qB = questionArray[qObject].B;
     let qC = questionArray[qObject].C;
     let qD = questionArray[qObject].D;
     let qE = questionArray[qObject].E;
     let qF = questionArray[qObject].F;
+    // text responses to correct and incorrect, and timeout
     let right = "RIGHT!";
     let wrong = "WRONG!";
     let timesup = "TIME'S UP!";
@@ -387,7 +393,7 @@ $(document).ready(function () {
     // variable to stand for the scoring message at the end of the game
     let scoring = "<h5>FINISHED! How did you do?</h5><h5>0 to 10 points:</h5><p>Time for a remedial backpacking course! Right now, your life insurance policy is what financial advisors call a solid investment…for your spouse.</p><h5>10 to 20 points:</h5><p>You're skating on thin ice, Ringo. Before you go hiking again, carefully study the skills in this quiz and a how-to guide such as <a href='https://www.mountaineers.org/books/books/mountaineering-the-freedom-of-the-hills-9th-edition-1?gclid=Cj0KCQjww8jcBRDZARIsAJGCSGv351fwMJEDbeVTMF4U__G80b6B4nLKs-_BIaBHSGrUWP_femnqazMaAie_EALw_wcB' target='_blank'>Mountaineering: The Freedom of the Hills ($34.95 at www.mountaineers.org).</a></p><h5>20 to 26 points:</h5><p>Welcome to the great middle ground of risk. You might get the chance to pass on your genes, but those lapses add up the more you throw the dice.</p><h5>27 to 29 points:</h5><p>Just watch your driving; you have the wilderness stuff pretty much dialed.</p><h5>30 to 33 points:</h5><p>Keep your cholesterol down, Reinhold, and you'll still be climbing those mountains when you're 99.</p>"
 
-
+    // function to select a random background image to display
     function backgrounder() {
 
         let randomback = Math.floor(Math.random() * (35 - 1 + 1)) + 1;
@@ -399,6 +405,7 @@ $(document).ready(function () {
     // run backgrounder() to load a new background image
     backgrounder();
 
+    // function to display all text for a question and answers
     function displayQuestion() {
 
 
@@ -412,23 +419,26 @@ $(document).ready(function () {
         qD = questionArray[qObject].D;
         qE = questionArray[qObject].E;
         qF = questionArray[qObject].F;
+        // qNumber keeps track of what question script is on
         qNumber = qObject + 1;
 
 
-        // a hack, but couldn't find way to test for no more elements in Array
         // if the value of the Array Objects .question is "end", then show results
         if (qQuestion === "end") {
 
             // run backgrounder() to load a new background image
             backgrounder();
+
             // clear out the previous questions buttons
             $('#response').html("<div>");
             $('#question').html(scoring);
+
             // create a Bootstrap List Group with styling to hold results buttons
             $('#response').attr("class", "list-group list-group-flush col-sm-12 col-lg-6");
             $('#response').append('<button id="right" type="button" class="list-group-item list-group-item-action list-group-item-success"><strong>Correct: <span>' + rightAnswers + '</strong></button>');
             $('#response').append('<button id="wrong" type="button" class="list-group-item list-group-item-action list-group-item-danger">Incorrect: <span>' + wrongAnswers + '</button>');
             $('#response').append('<button id="noanswer" type="button" class="list-group-item list-group-item-action list-group-item-dark">Unanswered: <span>' + unAnswers + '</button>');
+
             // show the START button again, and change it's text to RETAKE QUIZ?
             $('#btn_area').attr("style", "display:block;");
             $('#btn_area').html("<h1>RETAKE QUIZ?</h1>");
@@ -436,7 +446,6 @@ $(document).ready(function () {
                 location.reload();
             });
 
-            console.log("all done!");
             return;
 
         }
@@ -481,39 +490,50 @@ $(document).ready(function () {
         // ...and when a user selects an answer by clicking any BUTTON...
         $('button').click(function (btn) {
 
+            // if they pick the right answer...
             if ($(this).attr('id') === qCorrect) {
-                // if they pick the right answer...
 
+                // show text confirming right answer
                 $('#question').html("<strong>" + right + "</strong>");
+                // show the explanation text of correct answer
                 $('#question').append("<p>" + qAnswer + "</p>");
+                // make the selected right answer background green
                 $(this).attr('class', 'list-group-item list-group-item-action list-group-item-success');
                 $('button').prop("disabled", true);
+                // increment the number of right answers
                 rightAnswers = rightAnswers + 1;
+                // increment the question number counter
                 qObject = qObject + 1;
+                // stop the countdown timer
                 clearInterval(intervalId);
-                setTimeout(displayQuestion, 1000 * 12);
+                // and after 10 seconds, load the next question
+                setTimeout(displayQuestion, 1000 * 10);
 
-            } else {
                 // or if they pick the wrong answer...
+            } else {
 
+                // show text indicating wrong answer
                 $('#question').html("<strong>" + wrong + "</strong>");
+                // show the explanation text of correct answer
                 $('#question').append("<p>" + qAnswer + "</p>");
+                // make the selected wrong answer background red
                 $(this).attr('class', 'list-group-item list-group-item-action list-group-item-danger');
                 $('button').prop("disabled", true);
+                // increment the number of wrong answers
                 wrongAnswers = wrongAnswers + 1;
+                // increment the question number counter
                 qObject = qObject + 1;
+                // stop the countdown timer
                 clearInterval(intervalId);
-                setTimeout(displayQuestion, 1000 * 12);
+                // and after 10 seconds, load the next question
+                setTimeout(displayQuestion, 1000 * 10);
 
             };
         });
-
-
-
     }
 
 
-
+    // function to run countdown timer for each question
     function countdown() {
 
         // set time to 60 seconds
@@ -522,7 +542,7 @@ $(document).ready(function () {
         // write the initial starting number to the page (match to seconds set in the TIME variable above)
         $("#timer").text("00:60");
 
-        // timeConverter function copied from the stopwatchSolution.js class activity... thank you! :-)
+        // timeConverter converts integer "time" to clock display format
         function timeConverter(t) {
 
             var minutes = Math.floor(t / 60);
@@ -541,26 +561,34 @@ $(document).ready(function () {
             return minutes + ":" + seconds;
         }
 
-        // the Callback function called in START's setInterval() method
-        // this function's actions run once every second, as defined by setInterval(count, 1000), below
+        // the callback function called in START()'s setInterval() method
+        // this function's actions run once every second
         function count() {
 
             // each time COUNT is called by START(), every 1 second, decrement the value of time by 1 (second)
             time--;
-            // console.log(time);
+
             // a variable to stand for the value of TIME, converted into clock time by the timeConverter() function above
             let converted = timeConverter(time);
+
             // write the new clock time (new second) converted by timeConverter() to the TIMER page DIV
             $("#timer").text(converted);
-            // when the value of time reaches 0, then...
+
+            // if time runs out without user clicking a button
             if (time === 0) {
-                // if time runs out without user clicking a button
+                // show timesup message
                 $('#question').html("<strong>" + timesup + "</strong>");
+                // show the text of the correct answer
                 $('#question').append("<p>" + qAnswer + "</p>");
+                // disable the ability to click an answer (no cheating)
                 $('button').prop("disabled", true);
+                // increment the unanswered questions counter
                 unAnswers = unAnswers + 1;
+                // increment the question number counter
                 qObject = qObject + 1;
+                // stop the countdown timer
                 clearInterval(intervalId);
+                // and after 10 seconds, load the next question
                 setTimeout(displayQuestion, 1000 * 10);
             }
         }
@@ -571,20 +599,21 @@ $(document).ready(function () {
             intervalId = setInterval(count, 1000);
         }
 
+        // triggers the COUNT() function, and runs it once per second
         start();
 
     }
 
-
+    // function for Start button to start the timed quiz
     $('#btn_area').click(function () {
 
         // hide the Start Button DIV
         $('#btn_area').attr('style', 'display:none;');
 
+        // run to display the first question
         displayQuestion();
 
     });
 
-
-
+    // end jQuery wrapper
 });
