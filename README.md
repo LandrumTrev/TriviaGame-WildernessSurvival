@@ -1,5 +1,5 @@
 # Wilderness Survival Quiz
-##### Multiple-choice quiz with individually timed question slides.
+##### Multiple-choice quiz with individually timed question slides
 
 JavaScript, jQuery, CSS, HTML, Bootstrap, Google Fonts, GitHub, responsive web design (RWD). Timed quiz with countdown timer clock and timeout-triggered functionality.
 
